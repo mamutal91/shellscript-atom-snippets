@@ -1,15 +1,13 @@
 {
   "name": "brazilian-shellscript-snippets-atom",
   "main": "./lib/brazilian-shellscript-snippets-atom",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Shell script Snippets in Brazilian Portuguese",
-  "keywords": [
-  ],
+  "keywords": [],
   "repository": "https://github.com/biglinux/shellscript-atom-snippets.git",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
