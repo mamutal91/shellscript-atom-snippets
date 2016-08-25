@@ -5,7 +5,7 @@
   "description": "Shell script Snippets in Brazilian Portuguese",
   "keywords": [
   ],
-  "repository": "https://github.com/atom/brazilian-shellscript-snippets-atom",
+  "repository": "https://github.com/biglinux/shellscript-atom-snippets.git",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
