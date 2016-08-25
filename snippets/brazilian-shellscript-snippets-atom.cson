@@ -1,0 +1,795 @@
+'.source.shell':
+  'Confere se o arquivo existe':
+    'prefix': 'if -f'
+    'body': """
+#Confere se o arquivo existe
+if [ -f "/bin/bash" ]; then
+    echo "O arquivo existe"
+else
+    echo "O arquivo não existe"
+fi
+"""
+
+  'Confere se o arquivo, diretório, link, ou arquivo especial existe':
+    'prefix': 'if -e'
+    'body': """
+#Confere se o arquivo, diretório, link, ou arquivo especial existe
+if [ -e "/bin/bash" ]; then
+    echo "O arquivo ou diretório não existe"
+else
+    echo "O arquivo ou diretório existe"
+fi
+"""
+
+
+  'Confere se a desigualdade é verdadeira':
+    'prefix': 'if !='
+    'body': """
+#Confere se a desigualdade é verdadeira
+if [ "0" != "1" ]; then
+    echo "A desigualdade é verdadeira"
+else
+    echo "A desigualdade não é verdadeira"
+fi
+"""
+
+
+  'Como utilizar checagens multiplas com elif':
+    'prefix': 'if elif'
+    'body': """
+#############
+#O uso do elif permite inserir uma série de checagens, iguais as utilizadas no if
+#As chacagens são interrompidas após a primeira checagem ser considerada ok
+#############
+if [ "1" = "0" ]
+then
+    echo "Primeira checagem ok"
+
+elif [ "1" = "1" ]
+then
+    echo "Segunda checagem ok"
+
+elif [ "1" = "2" ]
+then
+    echo "Terceira checagem ok"
+
+else
+    echo "Nenhuma checagem foi suprida."
+fi
+"""
+
+
+  'Como utilizar checagens multiplas AND e OR':
+    'prefix': 'if || e &&'
+    'body': """
+#############
+#As checagens podem ser combinadas por OR, que é representado por ||, nesses casos, será considerado ok se respeitar uma checagem ou outra.
+#As checagens podem ser combinadas por AND, que é representado por &&, nesses casos, será considerado ok se respeitar TODAS as checagens.
+#############
+#Exemplo de checagens multiplas, aonde todas precisam ser respeitadas
+if [ "1" = "1" ] && [ "2" = "2" ];then
+    echo "Checagens OK."
+else
+    echo "Checagens não correspondem."
+fi
+
+#Exemplo de checagens multiplas, aonde apenas uma precisa ser respeitada
+if [ "1" = "1" ] || [ "1" = "2" ];then
+    echo "Checagens OK."
+else
+    echo "Checagens não correspondem."
+fi
+
+#Exemplo de checagens múltiplas mistas.
+if [ "1" = "0" ] || [ "1" = "1" ] && [ -e "/boot" ] || [ -w "/etc" ]
+then
+    echo "Checagens OK."
+else
+    echo "Checagens não correspondem."
+fi
+"""
+
+
+  'Confere se o arquivo não existe':
+    'prefix': 'if ! -f'
+    'body': """
+#Confere se o arquivo não existe
+if [ ! -f "/bin/bash" ]; then
+    echo "O arquivo não existe"
+else
+    echo "O arquivo existe"
+fi
+"""
+
+
+  'Confere se o arquivo, diretório, link, ou arquivo especial NÃO existe':
+    'prefix': 'if ! -e'
+    'body': """
+#Confere se o arquivo, diretório, link, ou arquivo especial NÃO existe
+if [ ! -e "/bin/bash" ]; then
+    echo "O arquivo ou diretório não existe"
+else
+    echo "O arquivo ou diretório existe"
+fi
+"""
+
+  'Confere se a variável NÃO é nula':
+    'prefix': 'if -z)'
+    'body': """
+#Confere se a variável NÃO é nula
+if [ "$variavelX" ]
+then
+    echo "A variável existe."
+else
+    echo "A variável NÃO existe"
+fi
+"""
+
+
+  'Confere se a variável é nula':
+    'prefix': 'if -z)'
+    'body': """
+#Confere se a variável é nula
+if [ -z "$variavelX" ]
+then
+    echo "A variável está vazia."
+else
+    echo "A variável NÃO está vazia."
+fi
+"""
+
+
+  'Confere se o arquivo ou diretório NÃO possui permissão de leitura':
+    'prefix': 'if ! -r)'
+    'body': """
+#Confere se o arquivo ou diretório NÃO possui permissão de leitura
+if [ ! -r "/etc" ]
+then
+    echo "O arquivo ou diretório NÃO possui permissão de leitura para o usuário $USER."
+else
+    echo "O arquivo ou diretório possui permissão de leitura para o usuário $USER."
+fi
+"""
+
+
+  'Confere se o arquivo NÃO possui permissão de execução':
+    'prefix': 'if ! -x)'
+    'body': """
+#Confere se o arquivo NÃO possui permissão de execução
+if [ ! -x "/bin/bash" ]
+then
+    echo "O arquivo NÃO possui permissão de execução."
+else
+    echo "O arquivo possui permissão de execução."
+fi
+"""
+
+
+  'Confere se o arquivo ou diretório NÃO possui permissão de escrita':
+    'prefix': 'if ! -w)'
+    'body': """
+#Confere se o arquivo ou diretório NÃO possui permissão de escrita
+if [ ! -w "/etc" ]
+then
+    echo "O arquivo ou diretório NÃO possui permissão de gravação para o usuário $USER."
+else
+    echo "O arquivo ou diretório possui permissão de gravação para o usuário $USER."
+fi
+"""
+
+
+  'Arquivo ou diretório pertence ao usuário que está executando o script':
+    'prefix': 'if -O)'
+    'body': """
+#Arquivo ou diretório pertence ao usuário que está executando o script
+if [ -O "$HOME" ]
+then
+    echo "O arquivo ou diretório pertence ao usuário $USER."
+else
+    echo "O arquivo ou diretório NÃO pertence ao usuário $USER."
+fi
+"""
+
+
+  'Confere se o arquivo ou diretório pertence a um grupo que o usuário que está executando o script':
+    'prefix': 'if -G '
+    'body': """
+#Confere se o arquivo ou diretório pertence a um grupo que o usuário que está executando o script
+if [ -G "$HOME" ]
+then
+    echo "O arquivo ou diretório pertence a um grupo que o usuário $USER também pertence."
+else
+    echo "O arquivo ou diretório NÃO pertence a um grupo que o usuário $USER também pertence."
+fi
+"""
+
+
+  'Confere se o usuário tem permissões de root (administrador)':
+    'prefix': 'if test $(id -u)'
+    'body': """
+#Confere se o usuário tem permissões de root (administrador)
+if test $(id -u) != 0
+then
+    echo "Usuário sem permissão de root, cancelando o processo."
+    exit
+fi
+"""
+
+
+  'Confere se o arquivo ou diretório possui permissão de leitura':
+    'prefix': 'if -r'
+    'body': """
+#Confere se o arquivo ou diretório possui permissão de leitura
+if [ -r "/etc" ]
+then
+    echo "O arquivo ou diretório possui permissão de leitura para o usuário $USER."
+else
+    echo "O arquivo ou diretório NÃO possui permissão de leitura para o usuário $USER."
+fi
+"""
+
+
+  'Confere se o arquivo possui permissão de execução':
+    'prefix': 'if -x'
+    'body': """
+#Confere se o arquivo possui permissão de execução
+if [ -x "/bin/bash" ]
+then
+    echo "O arquivo possui permissão de execução."
+else
+    echo "O arquivo NÃO possui permissão de execução."
+fi
+"""
+
+
+  'Confere se o arquivo ou diretório possui permissão de escrita':
+    'prefix': 'if -w'
+    'body': """
+#Confere se o arquivo ou diretório possui permissão de escrita
+if [ -w "/etc" ]
+then
+    echo "O arquivo ou diretório possui permissão de gravação para o usuário $USER."
+else
+    echo "O arquivo ou diretório NÃO possui permissão de gravação para o usuário $USER."
+fi
+"""
+
+
+  'Arquivo ou diretório pertence ao usuário que está executando o script':
+    'prefix': 'if ! -O'
+    'body': """
+#Arquivo ou diretório pertence ao usuário que está executando o script
+if [ ! -O "$HOME" ]
+then
+    echo "O arquivo ou diretório pertence ao usuário $USER."
+else
+    echo "O arquivo ou diretório NÃO pertence ao usuário $USER."
+fi
+"""
+
+
+  'Confere se o arquivo ou diretório NÃO pertence a um grupo que o usuário que está executando o script está incluso':
+    'prefix': 'if ! -G'
+    'body': """
+#Confere se o arquivo ou diretório NÃO pertence a um grupo que o usuário que está executando o script está incluso
+if [ ! -G "$HOME" ]
+then
+    echo "O arquivo ou diretório NÃO pertence a um grupo que o usuário $USER também pertence."
+else
+    echo "O arquivo ou diretório pertence a um grupo que o usuário $USER também pertence."
+fi
+"""
+
+
+  'Confere se um número é menor que o outro':
+    'prefix': 'if -lt'
+    'body': """
+#Confere se um número é menor que o outro
+if [ "1" -lt "2" ]; then
+    echo "É menor que"
+else
+    echo "Não é menor que"
+fi
+"""
+
+
+  'Confere se um número é menor ou igual ao outro':
+    'prefix': 'if -le'
+    'body': """
+#Confere se um número é menor ou igual ao outro
+if [ "1" -le "2" ]; then
+    echo "É menor ou igual"
+else
+    echo "Não é menor ou igual"
+fi
+"""
+
+
+  'Arquivo ou diretório é mais recente':
+    'prefix': 'if -nt'
+    'body': """
+#Arquivo ou diretório é mais recente
+if [ "arquivo2" -nt "arquivo1" ]
+then
+    echo "O arquivo é mais recente."
+else
+    echo "O arquivo NÃO é mais recente."
+fi
+"""
+
+
+  'Arquivo ou diretório é mais antigo':
+    'prefix': 'if -ot'
+    'body': """
+#Arquivo ou diretório é mais antigo
+if [ "arquivo1" -ot "arquivo2" ]
+then
+    echo "O arquivo é mais antigo."
+else
+    echo "O arquivo NÃO é mais antigo."
+fi
+"""
+
+
+  'Confere se um número é maior que o outro':
+    'prefix': 'if -gt'
+    'body': """
+#Confere se um número é maior que o outro
+if [ "2" -gt "1" ]; then
+    echo "É maior que"
+else
+    echo "Não é maior que"
+fi
+"""
+
+
+  'Confere se um número é maior ou igual ao outro':
+    'prefix': 'if -ge'
+    'body': """
+#Confere se um número é maior ou igual ao outro
+if [ "1" -ge "2" ]; then
+    echo "É maior ou igual"
+else
+    echo "Não é maior ou igual"
+fi
+"""
+
+
+  'Confere se a igualdade é verdadeira':
+    'prefix': 'if ! -d'
+    'body': """
+#Confere se a igualdade é verdadeira
+if [ "1" = "1" ]; then
+    echo "A igualdade é verdadeira"
+else
+    echo "A igualdade não é verdadeira"
+fi
+"""
+
+
+  'Confere se o diretório NÃO existe':
+    'prefix': 'if ! -d'
+    'body': """
+#Confere se o diretório NÃO existe
+if [ ! -d "/boot" ]
+then
+    echo "O diretório existe"
+else
+    echo "O diretório NÃO existe"
+fi
+"""
+
+
+  'Confere se o diretório existe':
+    'prefix': 'if -d'
+    'body': """
+#Confere se o diretório existe
+if [ -d "/boot" ]
+then
+    echo "O diretório existe"
+else
+    echo "O diretório NÃO existe"
+fi
+"""
+
+  'Loop infinito':
+    'prefix': 'while2'
+    'body': """
+#loop infinito usando while
+while :; do
+	echo "Isso será executado infinitamente até que seja pressionado [CTRL+C]."
+done
+"""
+
+
+  'Loop até 5':
+    'prefix': 'while'
+    'body': """
+#loop até 5 usando while
+CONTADOR=0
+while [  $CONTADOR -lt 5 ]; do
+      echo "$CONTADOR";
+      let CONTADOR=CONTADOR+1;
+done
+"""
+
+
+  'until, o while invertido':
+    'prefix': 'until'
+    'body': """
+#O loop com until é o oposto do loop com while, irá repetir o loop enquanto a condição não for verdadeira, veja o exemplo que verifica se o navegador Firefox está aberto.
+until ps -e | grep firefox > /dev/null
+do
+      echo "O navegador Firefox NÃO está em execução."
+      sleep 10
+done
+"""
+
+
+  'Aguardar segundos':
+    'prefix': 'sleep'
+    'body': """
+#Para por 5 segundos e depois prossegue normalmente.
+sleep 5
+"""
+
+
+  'Criar pastas':
+    'prefix': 'mkdir'
+    'body': """
+#Cria pastas e subpastas, exemplo de uso: mkdir -p /home/usuario/pasta
+mkdir -p
+"""
+
+  'loop de lista':
+    'prefix': 'for2'
+    'body': """
+#Exemplo de for, onde irá executar o trecho entre do e done substituindo cada vez a variável $i por variavel 1, bananas e uvas.
+for i  in  "variavel 1" "bananas" "uvas"; do
+    echo "$i"
+done
+"""
+
+
+  'loop de comando':
+    'prefix': 'for'
+    'body': """
+#Exemplo de for, onde irá executar o trecho entre do e done uma vez para cada palavra listada no comando ls ~
+for i  in  $(ls ~); do
+    echo "$i"
+done
+"""
+
+
+  'echo, exibir na tela':
+    'prefix': 'echo'
+    'body': """
+#Insira o conteúdo entre os 2 EOF sem se preocupar com aspas
+echo $""
+"""
+
+  'case, uma opção ao if':
+    'prefix': 'case'
+    'body': """
+#Confere o primeiro parametro informado com as opções a seguir, exemplo de uso: ./script start
+case "$1" in
+
+    start)
+	echo "iniciando"
+	exit
+    ;;
+
+    stop)
+	echo "parando"
+	exit
+    ;;
+
+    restart)
+	echo "reiniciando"
+	exit
+    ;;
+
+esac
+"""
+
+
+  'IFS, altera a detecção de qubra de linhas':
+    'prefix': 'IFS'
+    'body': """
+#Altera a variável IFS para quebra de linha.
+#IFS é uma variável usada por vários comandos, entre eles o for, como forma de delimitador, onde normalmente é utilizado quebra de linha ou espaço em branco, nesse exemplo será considerado apenas a quebra de linha.
+OIFS=$IFS
+IFS=$'\n'
+#Insira aqui os comandos a serem executados com IFS somente para quebra de linha.
+
+
+#Restaura variável IFS para o padrão do sistema.
+IFS=$OIFS
+"""
+
+
+  'Cria uma função':
+    'prefix': 'funcao'
+    'body': """
+#A função é como criar um script dentro do script, que podemos executa-lo chamando o nome da função, segue exemplo:
+#Criando a função
+
+funcao1 () {
+  echo "Essa função apenas exibe esse texto. E esse complemento: $1"
+}
+
+#Executando a função, e incluindo uma variável dentro da função
+funcao1 "Complemento adicionado à função."
+
+"""
+
+
+  'EOF, equivale ao echo, mas não é preciso preocupar com aspas':
+    'prefix': 'EOF'
+    'body': """
+#Insira o conteúdo entre os 2 EOF sem se preocupar com aspas
+cat << EOF
+
+
+EOF
+"""
+
+
+  'Insere uma linha antes da linha que possui uma palavra específica':
+    'prefix': 'sedlinhaantesdapalavra'
+    'body': """
+#Insere uma linha antes da linha que possui uma palavra específica, no caso insere uma linha com o conteúdo "Nova linha", antes das linhas que possuem a palavra Podemos
+sed '/Podemos/{h;s/.*/Nova Linha/;p;x;}'
+"""
+
+
+  'Inclui linha depois de uma determinada linha':
+    'prefix': 'sedlinhadepoisdalinha'
+    'body': """
+#Inclui linha após uma determinada linha
+sed -e '3a\' -e 'Nova linha inserida após a linha 3'
+"""
+
+
+  'Insere uma linha após a linha que possui uma palavra específica':
+    'prefix': 'sedlinhadepoisdapalavra'
+    'body': """
+#Insere uma linha após a linha que possui uma palavra específica, no caso insere uma linha com o conteúdo "Nova linha", após as linhas que possuem a palavra Podemos
+sed '/Podemos/{p;s/.*/Nova linha/;}'
+"""
+
+
+  'Inclui linha antes de uma determinada linha':
+    'prefix': 'sedlinhaantesdalinha'
+    'body': """
+#Inclui linha antes de uma determinada linha
+sed -e '3i\' -e 'Nova linha inserida antes da linha 3'
+"""
+
+
+  'Inclui texto no inicio de uma linha especifica':
+    'prefix': 'sedinserepalavranoinicio'
+    'body': """
+#Incluir texto no início de uma linha específica
+sed '2s/^/Incluído no inicio da linha 2 /'
+"""
+
+
+  'Inclui texto no final de uma linha especifica':
+    'prefix': 'sedinserepalavranofim'
+    'body': """
+#Incluir texto no final de uma linha específica
+sed '2s/$/Incluído no final da linha 2 /'
+"""
+
+
+  'Exibe da linha 2 a 8':
+    'prefix': 'sedexibelinhas'
+    'body': """
+#Exibe um intervalo de linhas, no exemplo linha 2 à 8. Para exibir a última linha troque o número pelo caractere $
+sed '2,8!d'
+"""
+
+
+  'Exibe apenas a linha 3':
+    'prefix': 'sedexibelinha'
+    'body': """
+#Exibe apenas uma linha, no exemplo a linha 3. Para exibir a última linha troque o número pelo caractere $
+sed '3!d'
+"""
+
+
+  'Remove todas as quebras de linha':
+    'prefix': 'sedapagaquebrasdelinha'
+    'body': """
+#Remove todas as quebras de linha e deixa todo o texto com apenas uma linha
+sed ':a;$!N;s/\n//;ta;'
+"""
+
+
+  'Apagar os primeiros caracteres de todas as linhas':
+    'prefix': 'sedapagaprimeirocaractere'
+    'body': """
+#Apaga o primeiro caractere de todas as linhas, insira mais pontos para apagar mais caracteres
+sed 's/.//'
+"""
+
+
+  'Apagar todas as linhas entre entre duas ocorrências':
+    'prefix': 'sedapagalinhasentreocorrencias'
+    'body': """
+#Apagar todas as linhas entre entre duas ocorrências, no exemplo apaga todas as linhas que estiverem entre a primeira linha com a palavra linux até a linha com a palavra livre
+sed '/linux/,/livre/d'
+"""
+
+
+  'Apaga linhas em branco':
+    'prefix': 'sedapagalinhasembranco'
+    'body': """
+#Apaga linhas em branco
+sed '/^$/d'
+"""
+
+
+  'Apaga linhas que contem determinados caracteres':
+    'prefix': 'sedapagalinhapeloscaracteres'
+    'body': """
+#Apaga linhas que contem determinados caracteres, no exemplo as linhas que contenham a palavra carro
+sed '/carro/d'
+"""
+
+
+  'Remove uma linha pelo númeor':
+    'prefix': 'sedapagalinhapelonumero'
+    'body': """
+#Remove uma linha, no exemplo a linha 2. O caractere $ representa a última linha.
+sed '2d'
+"""
+
+
+  'Apaga intervalo de linhas':
+    'prefix': 'sedapagaintervalo'
+    'body': """
+#Apagar intervalo de linhas, no exemplo a linha 2 a 8. O caractere $ representa a última linha.
+sed '2,8d'
+"""
+
+  'Apaga espaços em branco consecutivos':
+    'prefix': 'sedapagaespacoduplo'
+    'body': """
+#Apaga espaços em branco consecutivos, ou seja, remove espaços duplicados
+sed 's/[ ]\+/ /g'
+"""
+
+  'Apaga a coluna especificada':
+    'prefix': 'sedapagacoluna'
+    'body': """
+#Apaga a coluna especificada, no exemplo a coluna número 3
+sed 's/.//3'
+"""
+
+  'Apaga apenas a primeira linha que contem determinados caracteres':
+    'prefix': 'sedprimeiralinhaquecasar'
+    'body': """
+#Apaga apenas a primeira linha que contem determinados caracteres, no exemplo a linha que contiver a palavra carro
+sed '/carro/{H;x;/^\n/d;g;}'
+"""
+
+  'Tornar todas as letras do texto minusculas':
+    'prefix': 'sedmaiusculas'
+    'body': """
+#Tornar todas as letras do texto minúsculas
+sed 'y/ABCDEFGHIJKLMNOPQRSTUVWXYZÀÁÂÃÉÊÍÓÔÕÚÇ/abcdefghijklmnopqrstuvwxyzàáâãéêíóôõúç/'
+"""
+
+
+  'Tornar todas as letras do texto maiúsculas':
+    'prefix': 'sedmaiusculas'
+    'body': """
+#Tornar todas as letras do texto maiúsculas
+sed 'y/abcdefghijklmnopqrstuvwxyzàáâãéêíóôõúç/ABCDEFGHIJKLMNOPQRSTUVWXYZÀÁÂÃÉÊÍÓÔÕÚÇ/'
+"""
+
+  'Altera parâmetro de arquivos de configuração':
+    'prefix': 'sedtrocaparametro'
+    'body': """
+#Altera parâmetro de arquivos de configuração.
+#Esse comando facilita a troca de configuração de arquivos que seguem o padrão parecido com esse: VARIAVEL=valor
+#No exemplo troca qualquer valor atribuído à variável name pelo valor Debian.
+sed 's|^ *\bNAME\b *=.*|NAME=Debian|'
+"""
+
+
+  'Troca todo o texto de uma linha específica':
+    'prefix': 'sedtrocaotextodeumalinhaespecifica'
+    'body': """
+#Substitui todo o texto de uma linha específica
+sed '3s/.*/Novo texto da linha 3/'
+"""
+
+
+  'Trocar todas as ocorrências do texto':
+    'prefix': 'sedtrocapalavra'
+    'body': """
+#Trocar todas as ocorrências do texto, no exemplo troca a palavra azul por verde em todo o texto
+sed 's/azul/verde/g'
+"""
+
+
+  'Substitui uma palavra por outra, desde que uma terceira palavra esteja presente na linha':
+    'prefix': 'sedtrocadesdequeterceirapalavraestejapresente'
+    'body': """
+#Substitui uma palavra por outra, desde que uma terceira palavra esteja presente na linha, no exemplo a palavra Script substituirá a palavra Linux nas linhas que também possuírem a palavra livro
+sed '/livro/s/Linux/Script/g'
+"""
+
+
+  'Trocar caracteres apenas de uma ocorrência específica em cada linha':
+    'prefix': 'sedtrocaocorrenciaespecificaemcadalinha'
+    'body': """
+#Trocar caracteres apenas de uma ocorrência específica em cada linha, no exemplo será trocada a terceira ocorrência da palavra azul, pela palavra verde
+sed 's/azul/verde/3'
+"""
+
+
+  'Substitui palavras apenas em linhas específicas':
+    'prefix': 'sedtrocapalavrasemlinhasespecificas'
+    'body': """
+#Substitui palavras apenas em linhas específicas, no exemplo substitui usar por fazer nas linhas entre 2 e 6
+sed '2,6s/usar/fazer/'
+"""
+
+
+  'Troca o intervalo entre os caracteres':
+    'prefix': 'sedtrocaintervalo'
+    'body': """
+#Troca o intervalo entre os caracteres, no exemplo troca todo o conteúdo entre sed e legal, incluindo as palavras sed e legal, por: novo texto trocado utilizando o sed
+sed 's/sed.*legal/novo texto trocado utilizando o sed/g'
+"""
+
+  'Exibe as linhas que não coincidem':
+    'prefix': 'grep -v '
+    'body': """
+#Exibe as linhas que não coincidem
+grep -v
+"""
+
+
+  'Exibe linhas antes de cada resultado encontrado':
+    'prefix': 'grep -B 2 '
+    'body': """
+#Exibe duas linhas antes de cada resultado encontrado
+grep -B 2
+"""
+
+
+  'Exibe linhas após cada resultado encontrado':
+    'prefix': 'grep -A 2 '
+    'body': """
+#Exibe duas linhas após cada resultado encontrado
+grep -A 2
+"""
+
+
+  'Ignora a diferença entre letras maiúsculas e minúsculas':
+    'prefix': 'grep -i '
+    'body': """
+#Ignora a diferença entre letras maiúsculas e minúsculas
+grep -i
+"""
+
+
+  'Exibe apenas o número de linhas que seriam exibidas':
+    'prefix': 'grep -c '
+    'body': """
+#Exibir apenas o número de linhas que seriam exibidas
+grep -c
+"""
+
+
+  'Exibe o número de cada linha antes do resultado':
+    'prefix': 'grep -n '
+    'body': """
+#Exibe o número de cada linha antes do resultado
+grep -n
+"""
