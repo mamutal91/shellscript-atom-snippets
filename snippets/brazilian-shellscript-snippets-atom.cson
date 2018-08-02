@@ -178,19 +178,6 @@ fi
 """
 
 
-  'Arquivo ou diretório pertence ao usuário que está executando o script':
-    'prefix': 'if -O)'
-    'body': """
-#Arquivo ou diretório pertence ao usuário que está executando o script
-if [ -O "$HOME" ]
-then
-    echo "O arquivo ou diretório pertence ao usuário $USER."
-else
-    echo "O arquivo ou diretório NÃO pertence ao usuário $USER."
-fi
-"""
-
-
   'Confere se o arquivo ou diretório pertence a um grupo que o usuário que está executando o script':
     'prefix': 'if -G '
     'body': """
