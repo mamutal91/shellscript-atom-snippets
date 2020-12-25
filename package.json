@@ -1,7 +1,7 @@
 {
   "name": "mamutal91-shellscript-snippets-atom",
   "main": "./lib/mamutal91-shellscript-snippets-atom",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Shell script Snippets in Brazilian Portuguese",
   "keywords": [],
   "repository": "https://github.com/mamutal91/shellscript-atom-snippets.git",
