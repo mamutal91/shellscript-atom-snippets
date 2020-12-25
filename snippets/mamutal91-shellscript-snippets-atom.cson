@@ -2,7 +2,6 @@
   'Confere se o arquivo existe':
     'prefix': 'if -f'
     'body': """
-#Confere se o arquivo existe
 if [ -f "/bin/bash" ]; then
     echo "O arquivo existe"
 else
@@ -13,7 +12,6 @@ fi
   'Confere se o arquivo, diretório, link, ou arquivo especial existe':
     'prefix': 'if -e'
     'body': """
-#Confere se o arquivo, diretório, link, ou arquivo especial existe
 if [ -e "/bin/bash" ]; then
     echo "O arquivo ou diretório não existe"
 else
@@ -25,7 +23,6 @@ fi
   'Confere se a desigualdade é verdadeira':
     'prefix': 'if !='
     'body': """
-#Confere se a desigualdade é verdadeira
 if [ "0" != "1" ]; then
     echo "A desigualdade é verdadeira"
 else
@@ -93,7 +90,6 @@ fi
   'Confere se o arquivo não existe':
     'prefix': 'if ! -f'
     'body': """
-#Confere se o arquivo não existe
 if [ ! -f "/bin/bash" ]; then
     echo "O arquivo não existe"
 else
@@ -105,7 +101,6 @@ fi
   'Confere se o arquivo, diretório, link, ou arquivo especial NÃO existe':
     'prefix': 'if ! -e'
     'body': """
-#Confere se o arquivo, diretório, link, ou arquivo especial NÃO existe
 if [ ! -e "/bin/bash" ]; then
     echo "O arquivo ou diretório não existe"
 else
@@ -116,7 +111,6 @@ fi
   'Confere se a variável NÃO é nula':
     'prefix': 'if -z)'
     'body': """
-#Confere se a variável NÃO é nula
 if [ "$variavelX" ]
 then
     echo "A variável existe."
@@ -129,7 +123,6 @@ fi
   'Confere se a variável é nula':
     'prefix': 'if -z)'
     'body': """
-#Confere se a variável é nula
 if [ -z "$variavelX" ]
 then
     echo "A variável está vazia."
@@ -142,7 +135,6 @@ fi
   'Confere se o arquivo ou diretório NÃO possui permissão de leitura':
     'prefix': 'if ! -r)'
     'body': """
-#Confere se o arquivo ou diretório NÃO possui permissão de leitura
 if [ ! -r "/etc" ]
 then
     echo "O arquivo ou diretório NÃO possui permissão de leitura para o usuário $USER."
@@ -155,7 +147,6 @@ fi
   'Confere se o arquivo NÃO possui permissão de execução':
     'prefix': 'if ! -x)'
     'body': """
-#Confere se o arquivo NÃO possui permissão de execução
 if [ ! -x "/bin/bash" ]
 then
     echo "O arquivo NÃO possui permissão de execução."
@@ -168,7 +159,6 @@ fi
   'Confere se o arquivo ou diretório NÃO possui permissão de escrita':
     'prefix': 'if ! -w)'
     'body': """
-#Confere se o arquivo ou diretório NÃO possui permissão de escrita
 if [ ! -w "/etc" ]
 then
     echo "O arquivo ou diretório NÃO possui permissão de gravação para o usuário $USER."
@@ -181,7 +171,6 @@ fi
   'Confere se o arquivo ou diretório pertence a um grupo que o usuário que está executando o script':
     'prefix': 'if -G '
     'body': """
-#Confere se o arquivo ou diretório pertence a um grupo que o usuário que está executando o script
 if [ -G "$HOME" ]
 then
     echo "O arquivo ou diretório pertence a um grupo que o usuário $USER também pertence."
@@ -194,7 +183,6 @@ fi
   'Confere se o usuário tem permissões de root (administrador)':
     'prefix': 'if test $(id -u)'
     'body': """
-#Confere se o usuário tem permissões de root (administrador)
 if test $(id -u) != 0
 then
     echo "Usuário sem permissão de root, cancelando o processo."
@@ -206,7 +194,6 @@ fi
   'Confere se o arquivo ou diretório possui permissão de leitura':
     'prefix': 'if -r'
     'body': """
-#Confere se o arquivo ou diretório possui permissão de leitura
 if [ -r "/etc" ]
 then
     echo "O arquivo ou diretório possui permissão de leitura para o usuário $USER."
@@ -219,7 +206,6 @@ fi
   'Confere se o arquivo possui permissão de execução':
     'prefix': 'if -x'
     'body': """
-#Confere se o arquivo possui permissão de execução
 if [ -x "/bin/bash" ]
 then
     echo "O arquivo possui permissão de execução."
@@ -232,7 +218,6 @@ fi
   'Confere se o arquivo ou diretório possui permissão de escrita':
     'prefix': 'if -w'
     'body': """
-#Confere se o arquivo ou diretório possui permissão de escrita
 if [ -w "/etc" ]
 then
     echo "O arquivo ou diretório possui permissão de gravação para o usuário $USER."
@@ -245,7 +230,6 @@ fi
   'Arquivo ou diretório pertence ao usuário que está executando o script':
     'prefix': 'if ! -O'
     'body': """
-#Arquivo ou diretório pertence ao usuário que está executando o script
 if [ ! -O "$HOME" ]
 then
     echo "O arquivo ou diretório pertence ao usuário $USER."
@@ -258,7 +242,6 @@ fi
   'Confere se o arquivo ou diretório NÃO pertence a um grupo que o usuário que está executando o script está incluso':
     'prefix': 'if ! -G'
     'body': """
-#Confere se o arquivo ou diretório NÃO pertence a um grupo que o usuário que está executando o script está incluso
 if [ ! -G "$HOME" ]
 then
     echo "O arquivo ou diretório NÃO pertence a um grupo que o usuário $USER também pertence."
@@ -271,7 +254,6 @@ fi
   'Confere se um número é menor que o outro':
     'prefix': 'if -lt'
     'body': """
-#Confere se um número é menor que o outro
 if [ "1" -lt "2" ]; then
     echo "É menor que"
 else
@@ -283,7 +265,6 @@ fi
   'Confere se um número é menor ou igual ao outro':
     'prefix': 'if -le'
     'body': """
-#Confere se um número é menor ou igual ao outro
 if [ "1" -le "2" ]; then
     echo "É menor ou igual"
 else
@@ -295,7 +276,6 @@ fi
   'Arquivo ou diretório é mais recente':
     'prefix': 'if -nt'
     'body': """
-#Arquivo ou diretório é mais recente
 if [ "arquivo2" -nt "arquivo1" ]
 then
     echo "O arquivo é mais recente."
@@ -308,7 +288,6 @@ fi
   'Arquivo ou diretório é mais antigo':
     'prefix': 'if -ot'
     'body': """
-#Arquivo ou diretório é mais antigo
 if [ "arquivo1" -ot "arquivo2" ]
 then
     echo "O arquivo é mais antigo."
@@ -321,7 +300,6 @@ fi
   'Confere se um número é maior que o outro':
     'prefix': 'if -gt'
     'body': """
-#Confere se um número é maior que o outro
 if [ "2" -gt "1" ]; then
     echo "É maior que"
 else
@@ -333,7 +311,6 @@ fi
   'Confere se um número é maior ou igual ao outro':
     'prefix': 'if -ge'
     'body': """
-#Confere se um número é maior ou igual ao outro
 if [ "1" -ge "2" ]; then
     echo "É maior ou igual"
 else
@@ -345,7 +322,6 @@ fi
   'Confere se a igualdade é verdadeira':
     'prefix': 'if ! -d'
     'body': """
-#Confere se a igualdade é verdadeira
 if [ "1" = "1" ]; then
     echo "A igualdade é verdadeira"
 else
@@ -357,7 +333,6 @@ fi
   'Confere se o diretório NÃO existe':
     'prefix': 'if ! -d'
     'body': """
-#Confere se o diretório NÃO existe
 if [ ! -d "/boot" ]
 then
     echo "O diretório existe"
@@ -370,7 +345,6 @@ fi
   'Confere se o diretório existe':
     'prefix': 'if -d'
     'body': """
-#Confere se o diretório existe
 if [ -d "/boot" ]
 then
     echo "O diretório existe"
