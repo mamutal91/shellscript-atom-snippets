@@ -472,15 +472,11 @@ IFS=$OIFS
   'Cria uma função':
     'prefix': 'funcao'
     'body': """
-#A função é como criar um script dentro do script, que podemos executa-lo chamando o nome da função, segue exemplo:
-#Criando a função
-
-funcao1 () {
+function name() {
   echo "Essa função apenas exibe esse texto. E esse complemento: $1"
 }
 
-#Executando a função, e incluindo uma variável dentro da função
-funcao1 "Complemento adicionado à função."
+name "Complemento adicionado à função."
 
 """
 
