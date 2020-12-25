@@ -1,5 +1,5 @@
 # atom-snippets
-Atom snippets in Brazilian Portuguese
+Personal Atom snippets in Brazilian Portuguese
 
 This file help to write shell script in atom.io editor.
 
