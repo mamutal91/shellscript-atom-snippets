@@ -473,10 +473,8 @@ IFS=$OIFS
     'prefix': 'funcao'
     'body': """
 function name() {
-  echo "Essa função apenas exibe esse texto. E esse complemento: $1"
-}
 
-name "Complemento adicionado à função."
+}
 
 """
 
@@ -749,4 +747,10 @@ grep -c
     'body': """
 #Exibe o número de cada linha antes do resultado
 grep -n
+"""
+
+  'Faz source automático no script de colors':
+    'prefix': 'colors'
+    'body': """
+source $HOME/.colors
 """
