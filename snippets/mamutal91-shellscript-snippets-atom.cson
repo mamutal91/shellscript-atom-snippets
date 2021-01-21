@@ -751,5 +751,11 @@ grep -n
   'Faz source automático no script de colors':
     'prefix': 'colors'
     'body': """
-source $HOME/.colors
+source $HOME/.colors &>/dev/null
+"""
+
+  'Não imprime a saída de um comando':
+    'prefix': 'dev null'
+    'body': """
+&>/dev/null
 """
